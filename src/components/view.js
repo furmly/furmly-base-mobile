@@ -18,10 +18,7 @@ const styles = StyleSheet.create({
     alignItems: "stretch"
   }
 });
-let env;
-addListener(e => {
-  env = e;
-});
+
 export default props => {
   if (props.hideSubmit)
     return <View style={styles.container}>{props.children}</View>;

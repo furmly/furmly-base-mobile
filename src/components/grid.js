@@ -8,7 +8,6 @@ import {
   TouchableHighlight
 } from "react-native";
 import Button from "./button";
-import { addListener } from "./env_listener";
 import SmallModal from "react-native-modalbox";
 const screen = Dimensions.get("window");
 const styles = StyleSheet.create({
@@ -197,10 +196,7 @@ export default props => {
   return <View style={{ flex: 1 }}>{allElements}</View>;
 };
 
-let env;
-addListener(e => {
-  env = e;
-});
+
 export const GridHeader = props => {
   let buttonStyle = {
     borderWidth: StyleSheet.hairThin,

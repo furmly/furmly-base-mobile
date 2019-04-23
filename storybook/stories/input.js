@@ -2,7 +2,10 @@ import React from "react";
 import { View, StyleSheet } from "react-native";
 import { storiesOf } from "@storybook/react-native";
 import { action } from "@storybook/addon-actions";
-import Input, { FurmlyDatePicker, FurmlyCheckbox } from "../components/input";
+import Input, {
+  FurmlyDatePicker,
+  FurmlyCheckbox
+} from "../../src/components/input";
 
 const valueChanged = action("valueChanged");
 const time = new Date();
@@ -16,7 +19,7 @@ const styles = StyleSheet.create({
   halfWidth: {
     flex: 0.5
   }
-});
+}); 
 export const dateProps = {
   name: "dateOfBirth",
   description: "This is the day you were born.",

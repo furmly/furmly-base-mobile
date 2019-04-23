@@ -1,5 +1,2 @@
-export { default } from "./controls.js";
-export { default as Link } from "./nav";
+export { default } from "./src/configure.js";
 export { defaultRootReducer } from "furmly-client";
-import { utils } from "furmly-client";
-export const viewHelpers = utils.view;

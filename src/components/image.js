@@ -1,9 +1,8 @@
 import React from "react";
 import { Image, View } from "react-native";
-import imageLocation from "imageLocation";
+import imageMap from "imageMap";
 
 export default props => {
-  console.log(imageLocation);
   return (
     <View
       style={{
@@ -16,7 +15,7 @@ export default props => {
         source={
           props.args.type == "URL" || props.args.type == "DATA"
             ? { uri: props.args.config.data }
-            : imageLocation[props.args.config.data] || imageLocation["unknown"]
+            : imageMap[props.args.config.data] || imageMap["unknown"]
         }
         resizeMode="cover"
       />

@@ -1,0 +1,48 @@
+{
+  "description": {
+    "_id": "input",
+    "title": "Student Clearance",
+    "description": "Used by clearance officers to clear students",
+    "uid": "CLEAR_STUDENT",
+    "steps": [
+      {
+        "_id": "59bf14940774e451fcd2f0de",
+        "stepType": "CLIENT",
+        "mode": "VIEW",
+        "form": {
+          "elements": [
+            {
+              "validators": [
+                {
+                  "validatorType": "REQUIRED"
+                }
+              ],
+              "description": "Family name",
+              "asyncValidators": [],
+              "args": {
+                "type": "text"
+              },
+              "name": "Surname",
+              "label": "Surname",
+              "elementType": "INPUT",
+              "component_uid": "bdea2277-f04f-4126-a806-91cf43da9327"
+            },
+            {
+              "validators": [
+                {
+                  "validatorType": "REQUIRED"
+                }
+              ],
+              "description": "",
+              "asyncValidators": [],
+              "name": "firstName",
+              "label": "First Name",
+              "elementType": "INPUT",
+              "component_uid": "e4a2b238-48ed-44d5-81eb-4dfc440df1fd"
+            }
+          ]
+        }
+      }
+    ]
+  }
+}
