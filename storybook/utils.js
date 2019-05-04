@@ -18,16 +18,23 @@ export const apiMiddleware = ({ getState, dispatch }) => next => action => {
           switch (post.type) {
             case ACTIONS.FURMLY_PROCESSOR_RAN:
             case ACTIONS.FETCHED_PROCESS:
-              result = fixture[pre.meta];
+            case ACTIONS.GOT_ITEM_TEMPLATE:
+              //case ACTIONS.
+              result = fixture[pre.meta.id || pre.meta];
               break;
             default:
               return reject();
           }
+          if (!result)
+            return reject("Cannot find anything matching your query");
           resolve(result);
         })
     };
-    post.payload(action, state, response).then(x => {
-      dispatch({ ...post, payload: x });
-    });
+    post
+      .payload(action, state, response)
+      .then(x => {
+        dispatch({ ...post, payload: x });
+      })
+      .catch(e => console.warn(e));
   }, 500);
 };

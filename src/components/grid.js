@@ -77,7 +77,14 @@ const styles = StyleSheet.create({
 });
 
 export const GridLayout = props => {
-  return <View style={{ flex: 1, margin: -15 }}>{props.children}</View>;
+  return (
+    <View style={{ flex: 1, margin: -15 }}>
+      {props.list}
+      {props.commandsView}
+      {props.itemView}
+      {props.commandResultView}
+    </View>
+  );
 };
 
 const keyExtractor = function(data) {
@@ -195,7 +202,6 @@ export default props => {
 
   return <View style={{ flex: 1 }}>{allElements}</View>;
 };
-
 
 export const GridHeader = props => {
   let buttonStyle = {

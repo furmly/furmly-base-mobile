@@ -30,7 +30,8 @@ export default props => {
         <Button
           onPress={props.submit}
           centerIcon={"arrow-right"}
-          color={"#000000"}
+          title={props.commandLabel}
+          color={"white"}
           style={{
             borderWidth: StyleSheet.hairThin,
             justifyContent: "center",

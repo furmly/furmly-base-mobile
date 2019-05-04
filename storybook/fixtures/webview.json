@@ -1,0 +1,14 @@
+[
+  {
+    "args": {
+      "url": "https://chidionuekwusi.github.io/Twaija-web"
+    },
+    "validators": [],
+    "description": "",
+    "asyncValidators": [],
+    "name": "webview",
+    "label": "Web View",
+    "elementType": "WEBVIEW",
+    "component_uid": "b41a05b1-e2c8-46dc-87b6-772a1700c55e"
+  }
+]

@@ -1,5 +1,4 @@
 import React from "react";
-import { View } from "react-native";
 import { storiesOf } from "@storybook/react-native";
 import configure from "../../src/configure";
 import { apiMiddleware } from "../utils";
@@ -13,6 +12,4 @@ const controls = configure({
 });
 const Provider = controls.PROVIDER;
 
-storiesOf("Input", module).add("connected inputs text", () => (
-  <Provider id={"input"} />
-));
+storiesOf("Select", module).add("default", () => <Provider id={"select"} />);

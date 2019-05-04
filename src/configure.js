@@ -36,9 +36,7 @@ import FurmlyFileUpload, {
   UnsupportedText
 } from "./components/file_upload";
 import FurmlyCommand, { startDownload } from "./components/command";
-import FurmlyActionFilter, {
-  furmlyActionViewContent
-} from "./components/action_filter";
+import FurmlyActionFilter from "./components/action_filter";
 
 export default (
   { interceptors, extendLib, providerConfig = [] } = { providerConfig: [] }
@@ -69,13 +67,11 @@ export default (
           paddingBottom: 10,
           paddingLeft: 10,
           paddingRight: 10,
-          // borderBottomWidth: 1,
-          // borderColor: "#B9B9B9",
-          //borderRadius: 4,
           backgroundColor: "#FFFFFF"
         }}
       >
-        {props.children}
+        {props.header}
+        {props.content}
       </View>
     );
   };
@@ -163,15 +159,17 @@ export default (
   ]);
   maps.addRecipe("WEBVIEW", [FurmlyWebView, Text]);
   maps.addRecipe("ACTIONVIEW", [
-    ({ children }) => (
+    ({ filter, content }) => (
       <ScrollView contentContainerStyle={{ alignItems: "stretch" }}>
-        <View style={{ flexGrow: 1 }}>{children}</View>
+        <View style={{ flexGrow: 1 }}>
+          {filter}
+          {content}
+        </View>
       </ScrollView>
     ),
     ActivityIndicator,
     FurmlyActionFilter,
-    container,
-    furmlyActionViewContent(container)
+    container
   ]);
   maps.addRecipe("HTMLVIEW", [FurmlyHtmlView]);
 

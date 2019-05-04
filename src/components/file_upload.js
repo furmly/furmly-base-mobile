@@ -49,13 +49,14 @@ export default class FileUpload extends Component {
   }
   openCameraRoll() {
     ImagePicker.showImagePicker(options, response => {
-      console.log("Response = ", response);
+      console.warn("Response = ", response);
 
       if (response.didCancel || response.error) {
-        console.log("User cancelled/error image picker");
+        console.warn("User cancelled/error image picker");
       } else {
         // You can also display the image using data:
         // let source = { uri: 'data:image/jpeg;base64,' + response.data };
+        console.warn("uri:" + response.uri);
         let file = {
           uri: response.uri,
           type: response.type,

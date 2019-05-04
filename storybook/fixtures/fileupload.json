@@ -1,0 +1,13 @@
+[
+  {
+    "elementType": "FILEUPLOAD",
+    "args": {
+      "fileType": "png|jpeg",
+      "showPreview": true
+    },
+    "name": "fileupload",
+    "label": "Upload",
+    "order": 1,
+    "description": "Upload your passport photo"
+  }
+]

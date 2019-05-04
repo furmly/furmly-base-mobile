@@ -1,7 +1,7 @@
 import React from "react";
 import { View, Text } from "react-native";
-export default e => (
+module.exports = e => (
   <View>
-    <Text>{e}</Text>
+    <Text>{e.message}</Text>
   </View>
 );

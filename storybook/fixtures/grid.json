@@ -1,0 +1,100 @@
+[
+  {
+    "asyncValidators": [],
+    "validators": [],
+    "args": {
+      "commands": [
+        {
+          "commandText": "Do some creative thing at the backend",
+          "commandIcon": "person",
+          "commandType": "PROCESSOR",
+          "command": {
+            "value": "3"
+          }
+        },
+        {
+          "commandText": "Write a cheque",
+          "commandIcon": "person",
+          "commandType": "PROCESSOR",
+          "command": {
+            "value": "2"
+          }
+        },
+        {
+          "commandText": "Cash a cheque",
+          "commandIcon": "person",
+          "commandType": "PROCESSOR",
+          "command": {
+            "value": "1"
+          }
+        }
+      ],
+      "filter": [
+        {
+          "validators": [
+            {
+              "validatorType": "REQUIRED"
+            }
+          ],
+          "elementType": "INPUT",
+          "args": {
+            "type": "text"
+          },
+          "name": "code",
+          "label": "Search for snippet",
+          "component_uid": "7089f0e4-0d22-4dd8-9c85-08768ba73054"
+        },
+        {
+          "validators": [],
+          "description": "",
+          "asyncValidators": [],
+          "args": {
+            "type": "password"
+          },
+          "name": "password",
+          "label": "Password (Current User)",
+          "elementType": "INPUT",
+          "component_uid": "45572c9a-0f1c-4a31-8bcd-8ddc553d9713"
+        },
+        {
+          "validators": [],
+          "description": "",
+          "asyncValidators": [],
+          "args": {
+            "type": "checkbox"
+          },
+          "name": "requiresIdentity",
+          "label": "Requires Identity",
+          "elementType": "INPUT",
+          "component_uid": "f768dfd5-cf25-4419-877b-970b09512740"
+        },
+        {
+          "elementType": "SELECT",
+          "args": {
+            "type": "PROCESSOR",
+            "config": {
+              "value": "59c027fdf0c3e43dcc70c4dd"
+            }
+          },
+          "name": "department",
+          "label": "Department",
+          "order": 1,
+          "component_uid": "3d997424-8e27-4164-8cc6-05a02412f472"
+        }
+      ],
+      "mode": "CRUD",
+      "templateConfig": "{\n    \"name\":\"basic\",\n    \"config\":{\n        \"firstName\":\"First Name\",\n        \"middlename\":\"Middlename\",\n        \"surname\":\"Surname\"\n    }\n}",
+      "extra": {
+        "editTemplate": [],
+        "fetchTemplateProcessor": "fetch-grid-template",
+        "editProcessor": "59c02947f0c3e43dcc70c4df"
+      },
+      "source": "59bf231a3315c24ef080d369"
+    },
+    "elementType": "GRID",
+    "label": "Clear Students",
+    "name": "grid",
+    "_id": "59c02c2ff0c3e43dcc70c4e1",
+    "component_uid": "745c0c25-546f-4e54-aa04-a1589186a6ae"
+  }
+]

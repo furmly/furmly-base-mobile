@@ -1,0 +1,319 @@
+[
+  {
+    "name": "value",
+    "label": "Entity Template",
+    "elementType": "LIST",
+    "args": {
+      "rowTemplate": "{\"name\":\"expression\",\"config\":{\"exp\":\"{propertyName}\"}}",
+      "options": "TAG",
+      "behavior": {
+        "furmly_ref": "entitiesItemTemplate"
+      },
+      "itemTemplate": [
+        {
+          "name": "propertyName",
+          "label": "Property Name",
+          "elementType": "INPUT",
+          "args": {},
+          "description": "",
+          "validators": [],
+          "uid": null,
+          "order": null,
+          "component_uid": "06ba0816-96d2-4f7a-966a-8b198d400c3d",
+          "asyncValidators": []
+        },
+        {
+          "name": "propertyType",
+          "label": "Property Type",
+          "elementType": "SELECTSET",
+          "args": {
+            "path": "props",
+            "items": [
+              {
+                "id": "String",
+                "displayLabel": "String"
+              },
+              {
+                "id": "Number",
+                "displayLabel": "Number"
+              },
+              {
+                "id": "Boolean",
+                "displayLabel": "Boolean"
+              },
+              {
+                "id": "Date",
+                "displayLabel": "Date"
+              },
+              {
+                "id": "Object",
+                "displayLabel": "Object",
+                "elements": [
+                  {
+                    "name": "properties",
+                    "label": "Properties",
+                    "elementType": "LIST",
+                    "args": {
+                      "itemTemplate": {
+                        "template_ref": "entitiesItemTemplate"
+                      }
+                    },
+                    "description": "",
+                    "validators": [],
+                    "uid": null,
+                    "order": null,
+                    "component_uid": "aa340d1f-e335-49ad-8985-301902e5505c",
+                    "asyncValidators": []
+                  }
+                ]
+              },
+              {
+                "id": "Array",
+                "displayLabel": "Array",
+                "elements": [
+                  {
+                    "name": "properties",
+                    "label": "Of",
+                    "elementType": "LIST",
+                    "args": {
+                      "options": "TAG",
+                      "behavior": {
+                        "furmly_ref": "arrayItemTemplate"
+                      },
+                      "itemTemplate": [
+                        {
+                          "name": "propertyType",
+                          "label": "Property Type",
+                          "elementType": "SELECTSET",
+                          "args": {
+                            "path": "props",
+                            "items": [
+                              {
+                                "id": "String",
+                                "displayLabel": "String",
+                                "elements": [
+                                  {
+                                    "name": "propertyName",
+                                    "label": "Property Name",
+                                    "elementType": "INPUT",
+                                    "args": {},
+                                    "description": "",
+                                    "validators": [],
+                                    "uid": null,
+                                    "order": null,
+                                    "component_uid": "06ba0816-96d2-4f7a-966a-8b198d400c3d",
+                                    "asyncValidators": []
+                                  }
+                                ]
+                              },
+                              {
+                                "id": "Number",
+                                "displayLabel": "Number",
+                                "elements": [
+                                  {
+                                    "name": "propertyName",
+                                    "label": "Property Name",
+                                    "elementType": "INPUT",
+                                    "args": {},
+                                    "description": "",
+                                    "validators": [],
+                                    "uid": null,
+                                    "order": null,
+                                    "component_uid": "06ba0816-96d2-4f7a-966a-8b198d400c3d",
+                                    "asyncValidators": []
+                                  }
+                                ]
+                              },
+                              {
+                                "id": "Boolean",
+                                "displayLabel": "Boolean",
+                                "elements": [
+                                  {
+                                    "name": "propertyName",
+                                    "label": "Property Name",
+                                    "elementType": "INPUT",
+                                    "args": {},
+                                    "description": "",
+                                    "validators": [],
+                                    "uid": null,
+                                    "order": null,
+                                    "component_uid": "06ba0816-96d2-4f7a-966a-8b198d400c3d",
+                                    "asyncValidators": []
+                                  }
+                                ]
+                              },
+                              {
+                                "id": "Date",
+                                "displayLabel": "Date",
+                                "elements": [
+                                  {
+                                    "name": "propertyName",
+                                    "label": "Property Name",
+                                    "elementType": "INPUT",
+                                    "args": {},
+                                    "description": "",
+                                    "validators": [],
+                                    "uid": null,
+                                    "order": null,
+                                    "component_uid": "06ba0816-96d2-4f7a-966a-8b198d400c3d",
+                                    "asyncValidators": []
+                                  }
+                                ]
+                              },
+                              {
+                                "id": "Object",
+                                "displayLabel": "Object",
+                                "elements": [
+                                  {
+                                    "name": "propertyName",
+                                    "label": "Property Name",
+                                    "elementType": "INPUT",
+                                    "args": {},
+                                    "description": "",
+                                    "validators": [],
+                                    "uid": null,
+                                    "order": null,
+                                    "component_uid": "06ba0816-96d2-4f7a-966a-8b198d400c3d",
+                                    "asyncValidators": []
+                                  },
+                                  {
+                                    "name": "properties",
+                                    "label": "Properties",
+                                    "elementType": "LIST",
+                                    "args": {
+                                      "itemTemplate": {
+                                        "template_ref": "entitiesItemTemplate"
+                                      }
+                                    },
+                                    "description": "",
+                                    "validators": [],
+                                    "uid": null,
+                                    "order": null,
+                                    "component_uid": "aa340d1f-e335-49ad-8985-301902e5505c",
+                                    "asyncValidators": []
+                                  }
+                                ]
+                              },
+                              {
+                                "id": "Array",
+                                "displayLabel": "Array",
+                                "elements": [
+                                  {
+                                    "name": "propertyName",
+                                    "label": "Property Name",
+                                    "elementType": "INPUT",
+                                    "args": {},
+                                    "description": "",
+                                    "validators": [],
+                                    "uid": null,
+                                    "order": null,
+                                    "component_uid": "06ba0816-96d2-4f7a-966a-8b198d400c3d",
+                                    "asyncValidators": []
+                                  },
+                                  {
+                                    "name": "properties",
+                                    "label": "Of",
+                                    "elementType": "LIST",
+                                    "args": {
+                                      "options": "TAG",
+                                      "behavior": {
+                                        "furmly_ref": "arrayItemTemplate"
+                                      },
+                                      "itemTemplate": {
+                                        "template_ref": "arrayItemTemplate"
+                                      }
+                                    },
+                                    "description": "",
+                                    "validators": [],
+                                    "uid": null,
+                                    "order": null,
+                                    "component_uid": "e8fc91e1-6ae8-4dba-b781-dfee96440075",
+                                    "asyncValidators": []
+                                  }
+                                ]
+                              },
+                              {
+                                "id": "ObjectId",
+                                "displayLabel": "Reference an existing Schema",
+                                "elements": [
+                                  {
+                                    "name": "ref",
+                                    "label": "Reference",
+                                    "elementType": "SELECT",
+                                    "args": {
+                                      "type": "PROCESSOR",
+                                      "config": {
+                                        "value": "5b676aec1613b58788d0b5c4"
+                                      }
+                                    },
+                                    "description": "",
+                                    "validators": [],
+                                    "uid": null,
+                                    "order": null,
+                                    "component_uid": "667aa406-9246-4c72-88ed-46c809c655fc",
+                                    "asyncValidators": []
+                                  }
+                                ]
+                              }
+                            ]
+                          },
+                          "description": "",
+                          "validators": [],
+                          "uid": null,
+                          "order": null,
+                          "component_uid": "b66b4ca0-8b6d-4041-867d-a512777cf300",
+                          "asyncValidators": []
+                        }
+                      ]
+                    },
+                    "description": "",
+                    "validators": [],
+                    "uid": null,
+                    "order": null,
+                    "component_uid": "e8fc91e1-6ae8-4dba-b781-dfee96440075",
+                    "asyncValidators": []
+                  }
+                ]
+              },
+              {
+                "id": "ObjectId",
+                "displayLabel": "Reference an existing Schema",
+                "elements": [
+                  {
+                    "name": "ref",
+                    "label": "Reference",
+                    "elementType": "SELECT",
+                    "args": {
+                      "type": "PROCESSOR",
+                      "config": {
+                        "value": "5b676aec1613b58788d0b5c4"
+                      }
+                    },
+                    "description": "",
+                    "validators": [],
+                    "uid": null,
+                    "order": null,
+                    "component_uid": "667aa406-9246-4c72-88ed-46c809c655fc",
+                    "asyncValidators": []
+                  }
+                ]
+              }
+            ]
+          },
+          "description": "",
+          "validators": [],
+          "uid": null,
+          "order": null,
+          "component_uid": "b66b4ca0-8b6d-4041-867d-a512777cf300",
+          "asyncValidators": []
+        }
+      ]
+    },
+    "description": "",
+    "validators": [],
+    "uid": "CHIP_LIST",
+    "order": null,
+    "component_uid": "6c6591db-662f-49f8-880d-b0fd921a326b",
+    "asyncValidators": []
+  }
+]

@@ -191,7 +191,6 @@ var styles = StyleSheet.create({
     backgroundColor: "#60606010",
     color: "black",
     borderWidth: 1,
-    borderRadius: 4,
     padding: 2,
     paddingLeft: 15,
     height: 40,

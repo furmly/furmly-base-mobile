@@ -77,10 +77,8 @@ export default props => {
       {
         flexDirection: "row",
         justifyContent: "space-around",
-        marginTop: 5,
-        marginBottom: 5,
+        margin: 5,
         minHeight: 40,
-        borderRadius: 4
       },
       (props.floating && floating) || {},
       props.style || {}

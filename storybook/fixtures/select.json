@@ -1,0 +1,14 @@
+[
+  {
+    "elementType": "SELECT",
+    "args": {
+      "type": "PROCESSOR",
+      "config": {
+        "value": "gender"
+      }
+    },
+    "name": "select",
+    "label": "Select gender",
+    "order": 1
+  }
+]

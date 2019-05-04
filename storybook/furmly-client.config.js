@@ -1,5 +1,6 @@
 export default {
-    preDispatch(req) {
-		return req;
-	},
+  preDispatch(req) {
+    return req;
+  },
+  waitingProcessors: []
 };

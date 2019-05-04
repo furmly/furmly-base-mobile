@@ -1,5 +1,5 @@
 import React from "react";
-import { View, TouchableHighlight, StyleSheet } from "react-native";
+import { View, TouchableHighlight, StyleSheet, Text } from "react-native";
 import PropTypes from "prop-types";
 import Modal from "react-native-modalbox";
 const styles = StyleSheet.create({
