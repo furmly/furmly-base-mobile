@@ -1,7 +1,21 @@
 import React, { Component } from "react";
-import { Picker, View } from "react-native";
+import styled from "styled-components/native";
 import { getErrors } from "./input";
+import {
+  inputBackgroundColor,
+  minimumInputHeight,
+  inputColor
+} from "../variables";
 
+const View = styled.View`
+  flex: 1;
+  background-color: ${inputBackgroundColor};
+`;
+
+const Picker = styled.Picker`
+  height: ${minimumInputHeight}px;
+  color: ${inputColor};
+`;
 export default class extends Component {
   constructor(props) {
     super(props);
@@ -23,7 +37,7 @@ export default class extends Component {
     );
     elements.unshift(<Picker.Item key="..." label="None" value="" />);
     return (
-      <View style={{ flex: 1 }}>
+      <View>
         <Picker
           enabled={!this.props.disabled}
           selectedValue={this.props.value}

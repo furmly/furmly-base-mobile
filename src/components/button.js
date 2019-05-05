@@ -17,12 +17,19 @@ const floating = {
     elevation: 4,
     backgroundColor: "#FFFFFF"
   },
+  defaultStyle = {
+    flexDirection: "row",
+    justifyContent: "space-around",
+    padding: 5,
+    minHeight: 40
+  },
   getIcon = icon => {
     return (
       <Icon
         name={icon.name}
         color={icon.color}
-        size={icon.size == "large" ? 60 : icon.size || 32}
+        style={{ alignSelf: "center" }}
+        size={icon.size == "large" ? 60 : icon.size || 18}
       />
     );
   };
@@ -74,12 +81,7 @@ export default props => {
     })();
 
   let st = StyleSheet.flatten([
-      {
-        flexDirection: "row",
-        justifyContent: "space-around",
-        margin: 5,
-        minHeight: 40,
-      },
+      defaultStyle,
       (props.floating && floating) || {},
       props.style || {}
     ]),

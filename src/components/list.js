@@ -2,28 +2,51 @@ import React from "react";
 import Button from "./button";
 import {
   View,
-  Text,
-  ListView,
+  FlatList,
   ScrollView,
   Modal,
   ActivityIndicator,
-  TouchableHighlight,
-  StyleSheet
+  TouchableOpacity
 } from "react-native";
 import { utils } from "furmly-client";
+import styled from "styled-components/native";
+import { Label, Container } from "./label_wrapper";
+import {
+  dividerColor,
+  minimumInputHeight,
+  inputBackgroundColor,
+  elementPadding
+} from "../variables";
 
-const formatUnicorn = utils.formatExpression;
+const formatExpression = utils.formatExpression;
+const StyledDivider = styled.View`
+  height: 0.8px;
+  background-color: ${dividerColor};
+`;
+const ListLayout = styled.View`
+  background-color: ${inputBackgroundColor};
+  min-height: ${props => minimumInputHeight(props) * 2}px;
+`;
+const ItemContainer = styled.View`
+  min-height: ${minimumInputHeight}px;
+  flex-direction: row;
+  align-items: center;
+`;
+const Text = styled.Text`
+  padding-left: ${elementPadding}px;
+`;
 const camelCaseToWord = string => {
   if (!string) return;
   return string.replace(/([A-Z]+)/g, " $1").replace(/^./, function(str) {
     return str.toUpperCase();
   });
 };
+const keyExtractor = (item, index) => "" + index;
 const rowTemplates = {
-  expression: (rowData, withoutLabel, dataTemplate, rowIndex) => {
+  expression: (rowData, withoutLabel, dataTemplate, index) => {
     return (
       <View>
-        <Text>{formatUnicorn(dataTemplate.exp, rowData)}</Text>
+        <Text>{formatExpression(dataTemplate.exp, rowData)}</Text>
       </View>
     );
   },
@@ -45,42 +68,38 @@ const rowTemplates = {
       <View>{elements}</View>
       /*jshint ignore:end */
     );
-  },
-  includesImage: rowData => {
-    let { image, ...rest } = rowData;
-    return (
-      /*jshint ignore:start */
-      <View flex="1" flexDirection="row">
-        <Image flex="1" />
-        <View flex="3" flexDirection="column">
-          {rowTemplates.basic({ ...rest }, true)}
-        </View>
-      </View>
-      /*jshint ignore:end */
-    );
   }
 };
+const ListDivider = () => <StyledDivider />;
 export default props => {
   return (
     /*jshint ignore:start */
-    <ListView
-      enableEmptySections={true}
-      dataSource={new ListView.DataSource({
-        rowHasChanged: (r1, r2) => r1 !== r2
-      }).cloneWithRows(props.items || [])}
-      renderRow={(rowData, sectionID, rowID) => (
-        <TouchableHighlight
-          onPress={() => !props.disabled && props.rowClicked(rowID)}
+    <FlatList
+      data={props.items}
+      ItemSeparatorComponent={ListDivider}
+      keyExtractor={keyExtractor}
+      renderItem={({ item, index }) => (
+        <TouchableOpacity
+          onPress={() => !props.disabled && props.rowClicked(index)}
         >
-          {rowTemplates[
-            (props.rowTemplate && props.rowTemplate.name) || "basic"
-          ](
-            rowData,
-            false,
-            props.rowTemplate && props.rowTemplate.config,
-            rowID
-          )}
-        </TouchableHighlight>
+          <ItemContainer>
+            <View style={{ flex: 1 }}>
+              {rowTemplates[
+                (props.rowTemplate && props.rowTemplate.name) || "basic"
+              ](item, true, props.rowTemplate && props.rowTemplate.config)}
+            </View>
+            <View style={{ alignSelf: "flex-end" }}>
+              <Button
+                centerIcon={"delete"}
+                onPress={() => {
+                  if (!props.disabled) {
+                    props.rowRemoved(index);
+                  }
+                }}
+              />
+            </View>
+          </ItemContainer>
+        </TouchableOpacity>
       )}
     />
     /*jshint ignore:end */
@@ -92,7 +111,8 @@ export function FurmlyListButton(props) {
 
     <Button
       disabled={props.disabled}
-      title="Add New Item"
+      leftIcon="plus"
+      title="Add"
       onPress={() => props.click()}
     />
 
@@ -102,13 +122,24 @@ export function FurmlyListButton(props) {
 export function FurmlyListLayout(props) {
   return (
     /*jshint ignore:start */
-    <View style={styles.listLayoutStyle}>
-      <Text style={{ fontWeight: "bold" }}>{props.value}</Text>
-      {props.addButton}
-      {props.list}
+    <Container>
+      <View style={{ flexDirection: "row" }}>
+        <View
+          style={{
+            alignSelf: "center",
+            flex: 1,
+            justifyContent: "flex-start",
+            flexDirection: "row"
+          }}
+        >
+          <Label>{props.value}</Label>
+        </View>
+        <View style={{ alignSelf: "flex-end" }}>{props.addButton}</View>
+      </View>
+      <ListLayout>{props.list}</ListLayout>
       {props.modal}
       {props.confirmationModal}
-    </View>
+    </Container>
     /*jshint ignore:end */
   );
 }
@@ -124,7 +155,7 @@ export function FurmlyModal(props) {
     >
       {!props.hideDone ? (
         <View style={{ flex: 1 }}>
-          <ScrollView contentContainerStyle={{ padding: 15 }}>
+          <ScrollView>
             {!props.busy ? (
               props.template
             ) : (
@@ -132,18 +163,16 @@ export function FurmlyModal(props) {
             )}
           </ScrollView>
           <Button
-            title="ok"
+            title="OK"
             onPress={() => props.done(true)}
             style={{
               justifyContent: "center",
-              alignItems: "center",
-              borderWidth: 2,
-              borderColor: "#BEBEBE"
+              alignItems: "center"
             }}
           />
         </View>
       ) : !props.busy ? (
-        <View style={{ flex: 1, padding: 15 }}>{props.template}</View>
+        <View style={{ flex: 1 }}>{props.template}</View>
       ) : (
         <ActivityIndicator key={"indicator"} />
       )}
@@ -151,19 +180,3 @@ export function FurmlyModal(props) {
     /*jshint ignore:end */
   );
 }
-
-const styles = StyleSheet.create({
-  addButtonStyle: {
-    backgroundColor: "#606060",
-    padding: 10,
-    alignItems: "center"
-  },
-  addButtonTextStyle: {
-    color: "#ffffff",
-    fontWeight: "bold",
-    fontSize: 12
-  },
-  listLayoutStyle: {
-    padding: 2
-  }
-});

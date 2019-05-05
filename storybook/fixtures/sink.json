@@ -459,6 +459,56 @@
     "_id": "59c02c2ff0c3e43dcc70c4e1",
     "component_uid": "745c0c25-546f-4e54-aa04-a1589186a6ae"
   },
+
+  {
+    "validators": [],
+    "description": "Every is just fine. This is the description.",
+    "asyncValidators": [],
+    "name": "htmlView",
+    "label": "This is a fantastic label bruh.",
+    "elementType": "LABEL",
+    "component_uid": "b41a05b1-e2c8-46dc-87b6-772a1700c55e"
+  },
+  {
+    "validators": [
+      {
+        "validatorType": "REQUIRED"
+      }
+    ],
+    "description": "Family name",
+    "asyncValidators": [],
+    "args": {
+      "type": "text"
+    },
+    "name": "Surname",
+    "label": "Surname",
+    "elementType": "INPUT",
+    "component_uid": "bdea2277-f04f-4126-a806-91cf43da9327"
+  },
+  {
+    "validators": [
+      {
+        "validatorType": "REQUIRED"
+      }
+    ],
+    "description": "",
+    "asyncValidators": [],
+    "name": "firstName",
+    "label": "First Name",
+    "elementType": "INPUT",
+    "component_uid": "e4a2b238-48ed-44d5-81eb-4dfc440df1fd"
+  },
+  {
+    "elementType": "FILEUPLOAD",
+    "args": {
+      "fileType": "png|jpeg",
+      "showPreview": true
+    },
+    "name": "fileupload",
+    "label": "Upload",
+    "order": 1,
+    "description": "Upload your passport photo"
+  },
   {
     "name": "value",
     "label": "Entity Template",
@@ -775,54 +825,5 @@
     "order": null,
     "component_uid": "6c6591db-662f-49f8-880d-b0fd921a326b",
     "asyncValidators": []
-  },
-  {
-    "validators": [],
-    "description": "Every is just fine. This is the description.",
-    "asyncValidators": [],
-    "name": "htmlView",
-    "label": "This is a fantastic label bruh.",
-    "elementType": "LABEL",
-    "component_uid": "b41a05b1-e2c8-46dc-87b6-772a1700c55e"
-  },
-  {
-    "validators": [
-      {
-        "validatorType": "REQUIRED"
-      }
-    ],
-    "description": "Family name",
-    "asyncValidators": [],
-    "args": {
-      "type": "text"
-    },
-    "name": "Surname",
-    "label": "Surname",
-    "elementType": "INPUT",
-    "component_uid": "bdea2277-f04f-4126-a806-91cf43da9327"
-  },
-  {
-    "validators": [
-      {
-        "validatorType": "REQUIRED"
-      }
-    ],
-    "description": "",
-    "asyncValidators": [],
-    "name": "firstName",
-    "label": "First Name",
-    "elementType": "INPUT",
-    "component_uid": "e4a2b238-48ed-44d5-81eb-4dfc440df1fd"
-  },
-  {
-    "elementType": "FILEUPLOAD",
-    "args": {
-      "fileType": "png|jpeg",
-      "showPreview": true
-    },
-    "name": "fileupload",
-    "label": "Upload",
-    "order": 1,
-    "description": "Upload your passport photo"
   }
 ]

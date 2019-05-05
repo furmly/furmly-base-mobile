@@ -1,7 +1,12 @@
 import React, { Component } from "react";
-import { Text, View, Image, StyleSheet } from "react-native";
+import styled from "styled-components/native";
+import { View, Image, StyleSheet } from "react-native";
 import Button from "./button";
 import { getErrors } from "./input";
+import { smallText, containerPadding } from "../variables";
+import { Label } from "./label_wrapper";
+import ErrorText from "./common/error";
+import Copy from "./common/copy";
 const ImagePicker = require("react-native-image-picker");
 
 // More info on all the options is below in the README...just some common use cases shown here
@@ -10,26 +15,24 @@ const options = {
 };
 const imageTypes = /(png|jpeg|jpg)/i;
 const styles = StyleSheet.create({
-  titleStyle: {
-    fontWeight: "bold",
-    fontSize: 14
-  },
-  descriptionStyle: {
-    fontSize: 8
-  },
   imagePreview: {
     width: 150,
     height: 150,
     borderRadius: 100,
     marginBottom: -50
-  },
-  uploadButtonStyle: {
-    alignSelf: "flex-start"
-  },
-  unSupportedText: {
-    color: "red"
   }
 });
+const Container = styled.View`
+  padding: 0 ${containerPadding}px;
+`;
+const UploadButtonContainer = styled.View`
+  align-self: flex-start;
+`;
+
+const StyledUnsupportedText = styled(ErrorText)`
+  font-size: ${smallText}px;
+`;
+
 export default class FileUpload extends Component {
   constructor(props) {
     super(props);
@@ -74,11 +77,11 @@ export default class FileUpload extends Component {
       preview = <Preview data={this.props.preview} />;
     }
     return (
-      <View>
-        <Text style={styles.titleStyle}>{this.props.title}</Text>
-        <Text style={styles.desciptionStyle}>{this.props.description}</Text>
+      <Container>
+        <Label>{this.props.title}</Label>
+        <Copy>{this.props.description}</Copy>
         <View>{preview}</View>
-        <View style={styles.uploadButtonStyle}>
+        <UploadButtonContainer>
           <Button
             centerIcon="cloud-upload"
             style={{
@@ -88,9 +91,9 @@ export default class FileUpload extends Component {
             }}
             onPress={() => this.openCameraRoll()}
           />
-        </View>
+        </UploadButtonContainer>
         {getErrors(this.props.errors)}
-      </View>
+      </Container>
     );
   }
 }
@@ -103,5 +106,5 @@ ImagePreview.query = "?format=base64";
 
 export const Previews = [ImagePreview];
 export const UnsupportedText = props => {
-  return <Text style={styles.unSupportedText}>{props.message}</Text>;
+  return <StyledUnsupportedText>{props.message}</StyledUnsupportedText>;
 };

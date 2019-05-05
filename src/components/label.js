@@ -1,23 +1,13 @@
-import React, { Component } from "react";
-import { Text, StyleSheet } from "react-native";
+import React from "react";
+import styled from "styled-components/native";
+import { smallText } from "../variables";
+import { Container } from "./label_wrapper";
 
-let styles = StyleSheet.create({
-	furmlyLabelStyle: {
-		fontSize: 8,
-		fontWeight: "bold"
-	}
-});
-export default props => {
-	return (
-		/*jshint ignore:start */
-		<Text
-			style={StyleSheet.flatten(
-				global.appStyle ? global.appStyle.furmlyLabelStyle : {},
-				styles.furmlyLabelStyle
-			)}
-		>
-			{props.description}
-		</Text>
-		/*jshint ignore:end */
-	);
-};
+const Text = styled.Text`
+  font-size: ${smallText};
+`;
+export default props => (
+  <Container>
+    <Text>{props.description}</Text>
+  </Container>
+);

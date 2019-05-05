@@ -24,6 +24,7 @@ import FurmlyList, {
 import FurmlyLink from "./components/nav";
 import FurmlyContainer from "./components/container";
 import FurmlyMobileLabelWrapper from "./components/label_wrapper.js";
+import FurmlySelectSetLayout from "./components/selectset";
 import FurmlyImage from "./components/image";
 import FurmlyHtmlView from "./components/html_view";
 import FurmlyGridList, {
@@ -37,64 +38,15 @@ import FurmlyFileUpload, {
 } from "./components/file_upload";
 import FurmlyCommand, { startDownload } from "./components/command";
 import FurmlyActionFilter from "./components/action_filter";
+import GrayProgressIndicator from "./components/common/progress_indicator";
+import { SectionBody, SectionHeader } from "./components/section.js";
 
 export default (
   { interceptors, extendLib, providerConfig = [] } = { providerConfig: [] }
 ) => {
   const maps = controlMap();
   const container = new Deferred("container");
-  const GrayProgressIndicator = () => {
-    return (
-      <View
-        style={{
-          height: 40,
-          marginTop: 15,
-          marginBottom: 15,
-          backgroundColor: "#D8D8D8"
-        }}
-      />
-    );
-  };
 
-  const SectionBody = props => {
-    return (
-      <View
-        style={{
-          flexGrow: 1,
-          elevation: 2,
-          marginBottom: 10,
-          marginTop: 10,
-          paddingBottom: 10,
-          paddingLeft: 10,
-          paddingRight: 10,
-          backgroundColor: "#FFFFFF"
-        }}
-      >
-        {props.header}
-        {props.content}
-      </View>
-    );
-  };
-  const SectionHeader = props => {
-    return (
-      <Text
-        style={{
-          fontSize: 18,
-          fontWeight: "bold",
-          borderBottomWidth: 0,
-          //borderBottomColor: "#4A4A4A",
-          paddingBottom: 5,
-          marginBottom: 10,
-          marginLeft: -10,
-          marginRight: -10,
-          padding: 10,
-          backgroundColor: "#F9F9F9"
-        }}
-      >
-        {props.children}
-      </Text>
-    );
-  };
   const componentLocator = maps.componentLocator(interceptors);
   maps.addCONTAINERRecipe([FurmlyContainer, TextWrapper, componentLocator]);
   maps.addVIEWRecipe([FurmlyView, Warning, container]);
@@ -122,7 +74,7 @@ export default (
 
   //map control for selectset
   maps.addRecipe("SELECTSET", [
-    FurmlyMobileLabelWrapper,
+    FurmlySelectSetLayout,
     FurmlySelect,
     GrayProgressIndicator,
     container

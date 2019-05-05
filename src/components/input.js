@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import {
-  TextInput,
   Platform,
   DatePickerAndroid,
   DatePickerIOS,
@@ -9,7 +8,33 @@ import {
   View,
   Text
 } from "react-native";
+import styled from "styled-components/native";
 import Button from "./button";
+import {
+  inputPadding,
+  inputColor,
+  inputBackgroundColor,
+  minimumInputHeight
+} from "../variables";
+
+const InputContainer = styled.View`
+  color: ${inputColor};
+  margin-bottom: 5px;
+  margin-top: 5px;
+`;
+const DisabledInput = styled.Text`
+  font-weight: bold;
+  background-color: ${inputBackgroundColor};
+  color: ${inputColor};
+  padding: ${inputPadding};
+`;
+const StyledInput = styled.TextInput`
+  background-color: ${inputBackgroundColor};
+  color: ${inputColor};
+  border-width: 0;
+  padding: ${inputPadding};
+  height: ${minimumInputHeight};
+`;
 
 export const getErrors = errors =>
   (errors || []).map((e, index) => (
@@ -31,19 +56,13 @@ export default class extends Component {
     /*jshint ignore:start */
     if (this.props.args && this.props.args.disabled)
       return (
-        <View>
-          <Text style={{ fontWeight: "100" }}>{this.getValue()}</Text>
-        </View>
+        <InputContainer>
+          <DisabledInput>{this.getValue()}</DisabledInput>
+        </InputContainer>
       );
     return (
-      <View
-        style={{
-          marginBottom: 5,
-          marginTop: 5
-        }}
-      >
-        <TextInput
-          style={styles.textInput}
+      <InputContainer>
+        <StyledInput
           underlineColorAndroid="transparent"
           onChangeText={this.props.valueChanged}
           secureTextEntry={
@@ -52,7 +71,7 @@ export default class extends Component {
           value={this.getValue()}
         />
         {getErrors(this.props.errors)}
-      </View>
+      </InputContainer>
     );
     /*jshint ignore:end */
   }
