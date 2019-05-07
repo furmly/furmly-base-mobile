@@ -86,8 +86,7 @@ export default class FileUpload extends Component {
             centerIcon="cloud-upload"
             style={{
               zIndex: 1000,
-              borderRadius: 100,
-              backgroundColor: "#FFFFFF"
+
             }}
             onPress={() => this.openCameraRoll()}
           />

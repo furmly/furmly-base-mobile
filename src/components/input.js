@@ -3,24 +3,28 @@ import {
   Platform,
   DatePickerAndroid,
   DatePickerIOS,
-  Switch,
   StyleSheet,
+  TouchableOpacity,
   View,
   Text
 } from "react-native";
 import styled from "styled-components/native";
+import Icon from "./common/icon";
 import Button from "./button";
 import {
   inputPadding,
   inputColor,
   inputBackgroundColor,
-  minimumInputHeight
+  minimumInputHeight,
+  elementPadding,
+  labelColor,
+  accentColor
 } from "../variables";
 
 const InputContainer = styled.View`
   color: ${inputColor};
-  margin-bottom: 5px;
-  margin-top: 5px;
+  /*margin-bottom: 5px;
+  margin-top: 5px;*/
 `;
 const DisabledInput = styled.Text`
   font-weight: bold;
@@ -77,6 +81,15 @@ export default class extends Component {
   }
 }
 
+const CheckboxLayout = styled.View`
+  flex-direction: row;
+  align-items: center;
+`;
+const Switch = styled.Switch.attrs(props => ({
+  trackColor: { false: inputBackgroundColor(props), true: accentColor(props) },
+  thumbColor: null
+}))``;
+
 export class FurmlyCheckbox extends Component {
   constructor(props) {
     super(props);
@@ -88,20 +101,38 @@ export class FurmlyCheckbox extends Component {
   render() {
     /*jshint ignore:start */
     return (
-      <View style={styles.checkboxLayout}>
+      <CheckboxLayout>
         <Switch
           value={this.props.value}
           disabled={!!this.props.disabled}
           onValueChange={this.onValueChange}
         />
-        <Text>{this.props.description}</Text>
+        <Text style={{ alignSelf: "center" }}>{this.props.description}</Text>
         {getErrors(this.props.errors)}
-      </View>
+      </CheckboxLayout>
     );
     /*jshint ignore:end */
   }
 }
 
+const DatePickerLayout = styled.View`
+  flex-direction: row;
+  justify-content: center;
+  align-self: flex-start;
+  align-items: center;
+`;
+const DatePickerButton = styled.View`
+  height: ${minimumInputHeight}px;
+  background-color: ${inputBackgroundColor};
+  flex-direction: row;
+  align-items: center;
+  padding: ${elementPadding}px;
+  /* justify-content: space-around; */
+`;
+const DateText = styled.Text`
+  color: ${inputColor};
+  flex: 1;
+`;
 class DatePicker extends Component {
   constructor(props) {
     super(props);
@@ -146,66 +177,69 @@ class DatePicker extends Component {
   render() {
     /*jshint ignore:start */
     return (
-      <View>
-        <View style={styles.datePickerLayout}>
-          <Button
-            leftIcon={"calendar"}
-            onPress={this._onPressButton}
-            disabled={!!this.props.disabled}
-          />
-          <Text style={styles.datePickerText}>{this.getValue()}</Text>
+      <React.Fragment>
+        <DatePickerLayout>
+          <TouchableOpacity onPress={this._onPressButton} style={{ flex: 1 }}>
+            <DatePickerButton>
+              <DateText>{this.getValue()}</DateText>
+              <Icon name={"calendar"} size={24} />
+            </DatePickerButton>
+          </TouchableOpacity>
           {Platform.OS == "ios" && this.state.pickerVisible ? (
-            <View>
-              <DatePickerIOS
-                minimumDate={this.props.minDate}
-                maximumDate={this.props.maxDate}
-                date={
-                  (this.props.value &&
-                    !Date.prototype.isPrototypeOf(this.props.value) &&
-                    new Date(this.props.value)) ||
-                  this.props.value ||
-                  new Date()
-                }
-                onDateChange={this.props.valueChanged}
-              />
-            </View>
+            <DatePickerIOS
+              minimumDate={this.props.minDate}
+              maximumDate={this.props.maxDate}
+              date={
+                (this.props.value &&
+                  !Date.prototype.isPrototypeOf(this.props.value) &&
+                  new Date(this.props.value)) ||
+                this.props.value ||
+                new Date()
+              }
+              onDateChange={this.props.valueChanged}
+            />
           ) : null}
-        </View>
+        </DatePickerLayout>
         {getErrors(this.props.errors)}
-      </View>
+      </React.Fragment>
     );
     /*jshint ignore:end */
   }
 }
 
+const HorizontalLayout = styled.View`
+  flex-direction: row;
+  justify-content: center;
+  align-self: flex-start;
+  align-items: stretch;
+  flex: 1;
+`;
 export const FurmlyDatePicker = props => {
   if (props.isRange) {
     return (
-      <View style={styles.horizontalPickers}>
-        <DatePicker
-          disabled={props.disabled}
-          minDate={props.minDate}
-          maxDate={props.maxDate}
-          value={props.fromValue}
-        />
-        <DatePicker
-          disabled={props.disabled}
-          minDate={props.fromValue}
-          maxDate={props.maxDate}
-          value={props.toValue}
-        />
-      </View>
+      <HorizontalLayout>
+        <View style={{ flex: 1 }}>
+          <DatePicker
+            disabled={props.disabled}
+            minDate={props.minDate}
+            maxDate={props.maxDate}
+            value={props.fromValue}
+          />
+        </View>
+        <View style={{ flex: 1 }}>
+          <DatePicker
+            disabled={props.disabled}
+            minDate={props.fromValue}
+            maxDate={props.maxDate}
+            value={props.toValue}
+          />
+        </View>
+      </HorizontalLayout>
     );
   }
   return <DatePicker {...props} />;
 };
 var styles = StyleSheet.create({
-  horizontalPickers: {
-    flexDirection: "row",
-    justifyContent: "center",
-    alignSelf: "flex-start",
-    alignItems: "center"
-  },
   textInput: {
     backgroundColor: "#60606010",
     color: "black",
@@ -217,19 +251,5 @@ var styles = StyleSheet.create({
   },
   error: {
     color: "red"
-  },
-  datePickerText: {
-    fontWeight: "bold"
-  },
-  datePickerLayout: {
-    flexDirection: "row",
-    justifyContent: "center",
-    alignSelf: "flex-start",
-    alignItems: "center",
-    padding: 10
-  },
-  checkboxLayout: {
-    flexDirection: "row",
-    padding: 2
   }
 });

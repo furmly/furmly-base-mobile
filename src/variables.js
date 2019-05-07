@@ -31,7 +31,7 @@ export const highLightColor = props =>
   props.theme.highLightColor || "rgba(0,0,0,0.1)";
 export const inputColor = props => props.theme.inputColor || "black";
 export const progressBarColor = props =>
-  props.theme.progressBarColor || "black";
+  props.theme.progressBarColor || "rgba(53, 53, 53, 0.08)";
 export const inputBackgroundColor = props =>
   props.theme.inputBackgroundColor || "rgba(53, 53, 53, 0.08)";
 export const inputPadding = props => props.inputPadding || `0px 5px`;

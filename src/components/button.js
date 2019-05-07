@@ -7,7 +7,7 @@ import {
   TouchableNativeFeedback,
   StyleSheet
 } from "react-native";
-import Icon from "react-native-vector-icons/MaterialCommunityIcons";
+import Icon from "./common/icon";
 
 const floating = {
     position: "absolute",
@@ -24,14 +24,12 @@ const floating = {
     minHeight: 40
   },
   getIcon = icon => {
-    return (
-      <Icon
-        name={icon.name}
-        color={icon.color}
-        style={{ alignSelf: "center" }}
-        size={icon.size == "large" ? 60 : icon.size || 18}
-      />
-    );
+    const props = {
+      name: icon.name,
+      size: icon.size == "large" ? 60 : icon.size || 18
+    };
+    if (icon.color) props.color = icon.color;
+    return React.createElement(Icon, props);
   };
 export default props => {
   let leftIcon = props.leftIcon
