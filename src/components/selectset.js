@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Label, Container } from "../components/label_wrapper";
+import { Label } from "./label_wrapper";
+import Container from "./common/container";
 
 const SelectSetLayout = props => (
   <React.Fragment>

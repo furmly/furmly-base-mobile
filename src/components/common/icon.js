@@ -3,9 +3,12 @@ import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import { iconSize } from "../../variables";
 
 const StyledIcon = styled(Icon).attrs(props => ({
-  color: props.theme.iconColor,
   size: props.size || iconSize(props)
 }))`
   align-self: center;
+  color: ${props =>
+    (typeof props.color === "string" && props.color) ||
+    (typeof props.color === "function" && props.color(props)) ||
+    props.theme.iconColor};
 `;
 export default StyledIcon;

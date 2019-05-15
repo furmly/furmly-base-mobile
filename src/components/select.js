@@ -4,7 +4,8 @@ import { getErrors } from "./input";
 import {
   inputBackgroundColor,
   minimumInputHeight,
-  inputColor
+  inputColor,
+  elementPadding
 } from "../variables";
 
 const View = styled.View`
@@ -15,6 +16,19 @@ const View = styled.View`
 const Picker = styled.Picker`
   height: ${minimumInputHeight}px;
   color: ${inputColor};
+`;
+
+const Caret = styled.Text.attrs({ children: "▼" })`
+  color: ${inputColor};
+`;
+const CaretContainer = styled.View`
+  padding: ${elementPadding}px;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  justify-content: center;
+  align-items: center;
 `;
 export default class extends Component {
   constructor(props) {
@@ -42,10 +56,16 @@ export default class extends Component {
           enabled={!this.props.disabled}
           selectedValue={this.props.value}
           onValueChange={this.props.valueChanged}
+          style={{
+            backgroundColor: "transparent"
+          }}
         >
           {elements}
         </Picker>
         {getErrors(this.props.errors)}
+        <CaretContainer>
+          <Caret />
+        </CaretContainer>
       </View>
     );
     /*jshint ignore:end */

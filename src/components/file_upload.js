@@ -59,7 +59,7 @@ export default class FileUpload extends Component {
       } else {
         // You can also display the image using data:
         // let source = { uri: 'data:image/jpeg;base64,' + response.data };
-        console.warn("uri:" + response.uri);
+        // console.warn("uri:" + response.uri);
         let file = {
           uri: response.uri,
           type: response.type,

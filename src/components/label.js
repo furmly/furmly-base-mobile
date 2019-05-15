@@ -1,10 +1,11 @@
 import React from "react";
 import styled from "styled-components/native";
-import { smallText } from "../variables";
-import { Container } from "./label_wrapper";
+import { smallText, labelColor } from "../variables";
+import Container from "./common/container";
 
 const Text = styled.Text`
   font-size: ${smallText};
+  color: ${labelColor};
 `;
 export default props => (
   <Container>

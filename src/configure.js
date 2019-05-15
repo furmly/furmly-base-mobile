@@ -9,6 +9,7 @@ import FurmlyMobileInput, {
   FurmlyCheckbox
 } from "./components/input.js";
 import FurmlyView, { Warning } from "./components/view.js";
+import FurmlyModal from "./components/common/modal";
 import Indicator from "./components/activity_indicator.js";
 import TextWrapper from "./components/text_wrapper.js";
 import FurmlySelect from "./components/select.js";
@@ -18,7 +19,7 @@ import FurmlyWebView from "./components/webview";
 import Confirmation from "./components/confirmation";
 import FurmlyList, {
   FurmlyListButton,
-  FurmlyModal,
+  FurmlyListModal,
   FurmlyListLayout
 } from "./components/list.js";
 import FurmlyLink from "./components/nav";
@@ -84,7 +85,7 @@ export default (
     FurmlyListLayout,
     FurmlyListButton,
     FurmlyList,
-    FurmlyModal,
+    FurmlyListModal,
     ErrorText,
     ActivityIndicator,
     Confirmation,

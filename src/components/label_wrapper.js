@@ -4,18 +4,11 @@ import styled from "styled-components/native";
 import {
   labelBackgroundColor,
   labelColor,
-  containerPadding,
   labelPadding,
-  smallText,
-  elementPadding
+  smallText
 } from "../variables";
+import Container from "./common/container";
 
-export const Container = styled.View`
-  flex: 1;
-  justify-content: flex-start;
-  padding: 0 ${containerPadding}px;
-  margin-bottom: ${elementPadding}px;
-`;
 export const Label = styled.Text`
   font-weight: bold;
   font-size: ${smallText}px;

@@ -3,28 +3,24 @@ import {
   Platform,
   DatePickerAndroid,
   DatePickerIOS,
-  StyleSheet,
   TouchableOpacity,
-  View,
-  Text
+  View
 } from "react-native";
 import styled from "styled-components/native";
 import Icon from "./common/icon";
-import Button from "./button";
 import {
   inputPadding,
   inputColor,
   inputBackgroundColor,
   minimumInputHeight,
   elementPadding,
-  labelColor,
-  accentColor
+  accentColor,
+  errorColor,
+  secondaryBackgroundColor
 } from "../variables";
 
 const InputContainer = styled.View`
   color: ${inputColor};
-  /*margin-bottom: 5px;
-  margin-top: 5px;*/
 `;
 const DisabledInput = styled.Text`
   font-weight: bold;
@@ -39,17 +35,20 @@ const StyledInput = styled.TextInput`
   padding: ${inputPadding};
   height: ${minimumInputHeight};
 `;
+const ErrorText = styled.Text`
+  color: ${errorColor};
+`;
 
+let unmounted = 0;
 export const getErrors = errors =>
-  (errors || []).map((e, index) => (
-    <Text key={index} style={styles.error}>
-      {e}
-    </Text>
-  ));
+  (errors || []).map((e, index) => <ErrorText key={index}>{e}</ErrorText>);
 export default class extends Component {
   constructor(props) {
     super(props);
     this.getValue = this.getValue.bind(this);
+  }
+  componentWillUnmount() {
+    console.warn("input unmounted:" + unmounted++);
   }
   getValue() {
     return typeof this.props.value == "number"
@@ -86,7 +85,10 @@ const CheckboxLayout = styled.View`
   align-items: center;
 `;
 const Switch = styled.Switch.attrs(props => ({
-  trackColor: { false: inputBackgroundColor(props), true: accentColor(props) },
+  trackColor: {
+    false: secondaryBackgroundColor(props),
+    true: accentColor(props)
+  },
   thumbColor: null
 }))``;
 
@@ -107,7 +109,7 @@ export class FurmlyCheckbox extends Component {
           disabled={!!this.props.disabled}
           onValueChange={this.onValueChange}
         />
-        <Text style={{ alignSelf: "center" }}>{this.props.description}</Text>
+        <CheckboxText>{this.props.description}</CheckboxText>
         {getErrors(this.props.errors)}
       </CheckboxLayout>
     );
@@ -127,11 +129,13 @@ const DatePickerButton = styled.View`
   flex-direction: row;
   align-items: center;
   padding: ${elementPadding}px;
-  /* justify-content: space-around; */
 `;
 const DateText = styled.Text`
   color: ${inputColor};
   flex: 1;
+`;
+const CheckboxText = styled.Text`
+  align-self: center;
 `;
 class DatePicker extends Component {
   constructor(props) {
@@ -182,7 +186,7 @@ class DatePicker extends Component {
           <TouchableOpacity onPress={this._onPressButton} style={{ flex: 1 }}>
             <DatePickerButton>
               <DateText>{this.getValue()}</DateText>
-              <Icon name={"calendar"} size={24} />
+              <Icon name={"calendar"} size={24} color={inputColor} />
             </DatePickerButton>
           </TouchableOpacity>
           {Platform.OS == "ios" && this.state.pickerVisible ? (
@@ -239,17 +243,3 @@ export const FurmlyDatePicker = props => {
   }
   return <DatePicker {...props} />;
 };
-var styles = StyleSheet.create({
-  textInput: {
-    backgroundColor: "#60606010",
-    color: "black",
-    borderWidth: 1,
-    padding: 2,
-    paddingLeft: 15,
-    height: 40,
-    borderColor: "#CCB7B7B7"
-  },
-  error: {
-    color: "red"
-  }
-});

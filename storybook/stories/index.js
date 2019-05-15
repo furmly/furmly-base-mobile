@@ -7,14 +7,15 @@ const theme = {
   factor: 1,
   iconColor: "black",
   labelColor: "#28386f",
-  inputBackgroundColor: "#d5cf51",
-  inputColor: "white"
+  inputBackgroundColor: "#e7e7e7",
+  inputColor: "black",
+  accentColor: "rgb(218, 232, 148)"
 };
 addDecorator(storyFn => (
   <ThemeProvider theme={theme}>{storyFn()}</ThemeProvider>
 ));
 addDecorator(storyFn => (
-  <View style={{ flex: 1, backgroundColor: "#f5f6d7" }}>{storyFn()}</View>
+  <View style={{ flex: 1, backgroundColor: "#f4f4f4" }}>{storyFn()}</View>
 ));
 require("./sink");
 require("./input");

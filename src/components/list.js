@@ -1,22 +1,18 @@
 import React from "react";
 import Button from "./button";
-import {
-  View,
-  FlatList,
-  ScrollView,
-  Modal,
-  ActivityIndicator,
-  TouchableOpacity
-} from "react-native";
+import { View, FlatList, TouchableOpacity } from "react-native";
 import { utils } from "furmly-client";
 import styled from "styled-components/native";
-import { Label, Container } from "./label_wrapper";
+import { Label } from "./label_wrapper";
+import Container from "./common/container";
 import {
   dividerColor,
   minimumInputHeight,
   inputBackgroundColor,
-  elementPadding
+  elementPadding,
+  inputColor
 } from "../variables";
+import Modal from "./common/modal";
 
 const formatExpression = utils.formatExpression;
 const StyledDivider = styled.View`
@@ -34,6 +30,7 @@ const ItemContainer = styled.View`
 `;
 const Text = styled.Text`
   padding-left: ${elementPadding}px;
+  color: ${inputColor};
 `;
 const camelCaseToWord = string => {
   if (!string) return;
@@ -52,13 +49,14 @@ const rowTemplates = {
   },
   basic: (rowData, withoutLabel) => {
     let elements = Object.keys(rowData).map(x => {
+      const value = typeof rowData[x] == "object" ? "..." : rowData[x];
       /*jshint ignore:start */
       return withoutLabel ? (
-        <Text>{rowData[x]}</Text>
+        <Text>{value}</Text>
       ) : (
         <Text>
           <Text style={{ fontWeight: "bold" }}>{camelCaseToWord(x) + " "}</Text>
-          <Text>{typeof rowData[x] == "object" ? "..." : rowData[x]}</Text>
+          <Text>{value}</Text>
         </Text>
       );
       /*jshint ignore:end */
@@ -91,6 +89,7 @@ export default props => {
             <View style={{ alignSelf: "flex-end" }}>
               <Button
                 centerIcon={"delete"}
+                color={inputColor}
                 onPress={() => {
                   if (!props.disabled) {
                     props.rowRemoved(index);
@@ -143,40 +142,5 @@ export function FurmlyListLayout(props) {
     /*jshint ignore:end */
   );
 }
-export function FurmlyModal(props) {
-  return (
-    /*jshint ignore:start */
-    <Modal
-      animationType={"slide"}
-      transparent={false}
-      style={{ flex: 1 }}
-      visible={props.visibility}
-      onRequestClose={() => props.done(false)}
-    >
-      {!props.hideDone ? (
-        <View style={{ flex: 1 }}>
-          <ScrollView>
-            {!props.busy ? (
-              props.template
-            ) : (
-              <ActivityIndicator key={"indicator"} />
-            )}
-          </ScrollView>
-          <Button
-            title="OK"
-            onPress={() => props.done(true)}
-            style={{
-              justifyContent: "center",
-              alignItems: "center"
-            }}
-          />
-        </View>
-      ) : !props.busy ? (
-        <View style={{ flex: 1 }}>{props.template}</View>
-      ) : (
-        <ActivityIndicator key={"indicator"} />
-      )}
-    </Modal>
-    /*jshint ignore:end */
-  );
-}
+
+export const FurmlyListModal = props => <Modal {...props} />;

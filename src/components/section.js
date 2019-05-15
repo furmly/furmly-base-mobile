@@ -6,10 +6,13 @@ import {
   TouchableOpacity
 } from "react-native";
 import styled from "styled-components/native";
-import { titleText, containerPadding, labelColor } from "../variables";
+import { containerPadding } from "../variables";
 import StyledIcon from "./common/icon";
+import Title from "./common/title";
+
 UIManager.setLayoutAnimationEnabledExperimental &&
   UIManager.setLayoutAnimationEnabledExperimental(true);
+  
 const StyledSectionBody = styled.View`
   flex-grow: 1;
   elevation: 2;
@@ -19,19 +22,13 @@ const StyledSectionBody = styled.View`
   padding-top: ${containerPadding}px;
   padding-bottom: ${containerPadding}px;
 `;
-const StyledText = styled.Text`
-  font-size: ${titleText};
-  font-weight: bold;
-  padding: 0px ${containerPadding}px;
-  color: ${labelColor};
-`;
+
 const ToggleButton = styled.View`
   position: absolute;
   top: ${containerPadding}px;
   right: ${containerPadding}px;
-  z-index:-1;
+  z-index: -1;
 `;
-
 export class SectionBody extends React.Component {
   constructor(props) {
     super(props);
@@ -62,4 +59,4 @@ export class SectionBody extends React.Component {
   }
 }
 
-export const SectionHeader = props => <StyledText>{props.children}</StyledText>;
+export const SectionHeader = props => <Title>{props.children}</Title>;

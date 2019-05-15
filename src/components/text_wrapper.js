@@ -1,20 +1,23 @@
 import React from "react";
-import { View, Text } from "react-native";
+import styled from "styled-components/native";
+import { titleText, labelColor } from "../variables";
 
+const View = styled.View`
+  align-items: "center";
+  align-self: "stretch";
+  flex: 1;
+  padding: 10;
+  justify-content: center;
+`;
+const Text = styled.Text`
+  font-weight: bold;
+  font-size: ${titleText}px;
+  color: ${labelColor};
+`;
 export default props => {
-	return (
-		<View
-			style={{
-				alignItems: "center",
-				alignSelf:'stretch',
-				flex:1,
-				padding:10,
-				justifyContent: "center"
-			}}
-		>
-			<Text style={{ fontSize: 14, fontWeight: "bold" }}>
-				{props.text}
-			</Text>
-		</View>
-	);
+  return (
+    <View>
+      <Text>{props.text}</Text>
+    </View>
+  );
 };

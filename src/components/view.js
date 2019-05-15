@@ -1,6 +1,7 @@
 import React from "react";
 import { View, Text, StyleSheet, ScrollView } from "react-native";
-import Button from "./button";
+import Button, { INTENT } from "./button";
+import Container from "./common/container";
 
 const styles = StyleSheet.create({
   container: {
@@ -27,17 +28,13 @@ export default props => {
     <View style={styles.container}>
       <ScrollView contentContainerStyle={styles.scrollView}>
         {props.children}
-        <Button
-          onPress={props.submit}
-          centerIcon={"arrow-right"}
-          title={props.commandLabel}
-          color={"white"}
-          style={{
-            borderWidth: StyleSheet.hairThin,
-            justifyContent: "center",
-            backgroundColor: "#000000"
-          }}
-        />
+        <Container>
+          <Button
+            onPress={props.submit}
+            intent={INTENT.ACCENT}
+            title={props.commandLabel && props.commandLabel.toUpperCase()}
+          />
+        </Container>
       </ScrollView>
     </View>
   );

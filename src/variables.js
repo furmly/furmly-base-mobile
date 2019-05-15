@@ -8,9 +8,9 @@ export const labelBackgroundColor = props =>
   props.theme.labelBackgroundColor || "transparent";
 export const labelPadding = props => props.theme.factor * 5;
 export const secondaryBackgroundColor = props =>
-  props.theme.secondaryBackgroundColor || "transparent";
+  props.theme.secondaryBackgroundColor || "rgb(221, 221, 221)";
 export const secondaryColor = props => props.theme.secondaryColor || "white";
-export const accentColor = props => props.theme.accentColor || "#783196";
+export const accentColor = props => props.theme.accentColor || "blue";
 export const labelColor = props => props.theme.labelColor || "black";
 export const errorColor = props => props.theme.errorColor || "red";
 export const elementPadding = props => props.theme.factor * 8;
@@ -44,7 +44,11 @@ export const formComponentBackgroundColor = props =>
 export const modalBackgroundColor = props =>
   props.theme.modalBackgroundColor || "white";
 export const primaryButtonForegroundColor = props =>
-  props.theme.primaryButtonForegroundColor || "black";
+  props.theme.primaryButtonForegroundColor || labelColor(props);
+export const accentButtonForegroundColor = props =>
+  props.theme.accentButtonForegroundColor || "white";
+export const defaultBackgroundColor = props =>
+  props.theme.defaultBackgroundColor || "transparent";
 export const dropShadowColor = "rgba(0,0,0,0.18)";
 export const boxShadow = `box-shadow:0px 0px 14px 0px ${dropShadowColor}`;
 export const largerBoxShadow = `box-shadow:0px 5px 4px -1px ${dropShadowColor}`;

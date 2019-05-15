@@ -67,19 +67,6 @@
           "label": "Requires Identity",
           "elementType": "INPUT",
           "component_uid": "f768dfd5-cf25-4419-877b-970b09512740"
-        },
-        {
-          "elementType": "SELECT",
-          "args": {
-            "type": "PROCESSOR",
-            "config": {
-              "value": "59c027fdf0c3e43dcc70c4dd"
-            }
-          },
-          "name": "department",
-          "label": "Department",
-          "order": 1,
-          "component_uid": "3d997424-8e27-4164-8cc6-05a02412f472"
         }
       ],
       "mode": "CRUD",
