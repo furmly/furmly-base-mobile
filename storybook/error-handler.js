@@ -1,7 +1,8 @@
 import React from "react";
-import { View, Text } from "react-native";
+import Text from "../src/components/common/error";
+import Container from "../src/components/common/container";
 module.exports = e => (
-  <View>
+  <Container>
     <Text>{e.message}</Text>
-  </View>
+  </Container>
 );

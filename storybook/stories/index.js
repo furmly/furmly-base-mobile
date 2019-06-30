@@ -30,3 +30,4 @@ require("./actionview");
 require("./grid");
 require("./webview");
 require("./select");
+require("./activity_indicator")

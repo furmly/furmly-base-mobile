@@ -1,17 +1,42 @@
 import React from "react";
-import { Image, View } from "react-native";
+import styled from "styled-components/native";
 import imageMap from "imageMap";
+import Container from "./common/container";
+
+const thumbnailWidth = 50;
+const thumbnailWidthPx = `${thumbnailWidth}px`;
+const avatarSize = thumbnailWidth * 2;
+const avatarHeightPx = `${avatarSize}px`;
+const avatarWidthPx = `${avatarSize}px`;
+const avatarRadius = avatarSize / 2;
+const Image = styled.Image`
+  width: ${props =>
+    (!props.uid && "100%") ||
+    (props.uid === "THUMBNAIL" &&
+      (props.theme.thumbnailWidth || thumbnailWidthPx)) ||
+    (props.uid === "AVATAR" && (props.theme.avatarWidth || avatarWidthPx))};
+  height: ${props =>
+    (!props.uid && "250px") ||
+    ((props.uid === "THUMBNAIL" &&
+      (props.theme.thumbnailHeight || thumbnailWidthPx)) ||
+      (props.uid === "AVATAR" &&
+        (props.theme.avatarHeight || avatarHeightPx)))};
+  border-radius: ${props =>
+    (props.uid === "AVATAR" &&
+      ((props.theme.avatarHeight && props.theme.avatarHeight / 2) ||
+        avatarRadius)) ||
+    0};
+`;
 
 export default props => {
   return (
-    <View
+    <Container
       style={{
-        backgroundColor: "#560532",
         alignItems: "stretch"
       }}
     >
       <Image
-        style={{ width: "100%", height: 250 }}
+        uid={props.uid}
         source={
           props.args.type == "URL" || props.args.type == "DATA"
             ? { uri: props.args.config.data }
@@ -19,6 +44,6 @@ export default props => {
         }
         resizeMode="cover"
       />
-    </View>
+    </Container>
   );
 };
